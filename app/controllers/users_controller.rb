@@ -5,8 +5,11 @@ class UsersController < ApplicationController
 	end
 	
 	def create
-		@user = User.new(:username => params[:username], :password => [:password])
-		render 'new'
+    permitted_params = params.require(:user).permit(:username, :password, :password_confirmation)
+    @user = User.new(permitted_params)
+    @user.save
+		#@user = User.new(:username => params[:username], :password => [:password])
+		#render 'new'
 	end
 	
 end
