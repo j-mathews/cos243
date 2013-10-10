@@ -1,8 +1,4 @@
 GameContestServer::Application.routes.draw do
-	
-  resources :users
-
-  resources :create_users
 
 	resources :users
 	get 'signup', to: 'users#new', as: 'signup'
