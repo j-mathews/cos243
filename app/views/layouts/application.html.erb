@@ -6,9 +6,24 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
+	
 <body>
+	<h1>Game Contest Server</h1>
+	<nav class="navbar navbar-inverse" role="navigation">
+		<ul class="nav" role="navigation" >   
+			<li><a href="/signup">Sign Up!</a></li>  
+			<li><a href="/users/5/edit">edit</a></li>  
+			<li><a href="/users">users</a></li>  
+		</ul>  
+	</nav>
 
-<%= yield %>
+  <% flash.each do |level, message| %>
+    <div class="alert alert-<%= level %>"><%= message %> </div>
+  <%end%>
+  
+  <div class="container">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
