@@ -9,11 +9,15 @@
 	
 <body>
 	<h1>Game Contest Server</h1>
-	<nav class="navbar navbar-inverse" role="navigation">
-		<ul class="nav" role="navigation" >   
-			<li><a href="/signup">Sign Up!</a></li>  
+	<nav class="navbar" role="navigation">
+		<ul class="nav navbar-nav" >   
+      <li <%= if current_page?(root_path) then 'class=active' end%>>
+        <%= link_to "Home", root_path %></li>
+      <li><%= link_to "Users", users_path %></li>
+      <li><%= link_to "Sign Up", signup_path %></li>
+			<!--<li><a href="/signup">Sign Up!</a></li>  
 			<li><a href="/users/5/edit">edit</a></li>  
-			<li><a href="/users">users</a></li>  
+			<li><a href="/users">users</a></li>  -->
 		</ul>  
 	</nav>
 
