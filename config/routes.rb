@@ -1,6 +1,6 @@
 GameContestServer::Application.routes.draw do
 
-  root 'users#index'
+	root 'sessions#new'
   
 	resources :users
   
