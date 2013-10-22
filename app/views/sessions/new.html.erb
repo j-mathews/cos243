@@ -1,4 +1,9 @@
 <h1>Log In<h1>
+	<%if @thereisanerror%>
+<div class="alert alert-danger">
+    <p>Invalid</p>
+</div>
+<%end%>
   
 <%= form_tag sessions_path do %>
   <%= label_tag :username %>

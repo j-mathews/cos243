@@ -11,4 +11,12 @@ module SessionsHelper
     !current_user.nil?
   end
 	
+	def logIn(user)
+    cookies[:user_id] = user.id
+  end
+  
+  def logOut(user)
+    cookies.delete :user_id    
+  end
+	
 end
