@@ -1,0 +1,13 @@
+<p>Contest Owner : <%=link_to contest.user.username,user_path(contest.user.id) %> </p>
+<ul>
+  <li>Contest Name : <%=link_to contest.name, contest_path(contest) %></li>
+  <li>Contest Description : <%= contest.description %></li>
+  <li>Contest Type : <%= contest.contest_type %></li>
+  <li><%= link_to "delete", contest_path(contest), method: :delete, data: {confirm: "Are you sure you want to delete #{ contest.name }? (I heard it's pretty sweet)"} %> | 
+    <%= link_to "edit", edit_contest_path(contest.id)%></li>
+  <li><%= link_to contest.referee.name,referee_path(contest.referee_id) %>
+   
+</ul>
+<p></p>
+
+<p><%=time_ago_in_words(contest.start)%></p>

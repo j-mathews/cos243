@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < ApplicationController 
   before_action :ensure_user_logged_in, only: [:edit, :update]
   before_action :ensure_correct_user, only: [:edit, :update]
   before_action :ensure_admin_user, only: [:destroy]
@@ -9,11 +9,7 @@ class UsersController < ApplicationController
   end
   
   def new
-    if logged_in?
-      redirect_to root_path
-    else
-      @user = User.new
-    end
+    @user = User.new
   end
   
   def create
@@ -81,7 +77,7 @@ class UsersController < ApplicationController
     end
     
     def ensure_admin_user
-       redirect_to users_path unless current_user.admin?
+      redirect_to root_path, flash: { :danger => "Must be Admin!" } unless current_user.admin?
     end
     
 end

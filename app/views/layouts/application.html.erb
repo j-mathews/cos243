@@ -18,6 +18,10 @@
         <%= link_to "Home", root_path %></li>
       <li <%= if current_page?(users_path) then 'class=active' end%>>
         <%= link_to "Users", users_path %></li>
+      <li <%= if current_page?(referees_path) then 'class=active' end %>>
+              <%= link_to "Referees", referees_path %></li>
+      <li <%= if current_page?(referees_path) then 'class=active' end %>>
+              <%= link_to "Contests", contests_path %></li>
 			<% if logged_in? %>
 				<li<%= if current_page?(current_user) then ' class=active' end %>>
 					<%= link_to 'Profile', current_user %></li>

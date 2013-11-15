@@ -1,0 +1,8 @@
+<h1>List of referees</h1>
+<p><%= @referees.length%> referees</p>
+
+<ul>
+  <%= render @referees %>  
+</ul>
+
+<p><%=link_to "Create Referee", new_referee_path %></p>

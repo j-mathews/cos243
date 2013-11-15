@@ -1,0 +1,5 @@
+<h1>Referee Info</h1>
+
+<%=render @referee%>
+  <li>Contests: <ul><% @referee.contests.each do |f| %>
+  <li><%= link_to f.name, contest_path(f) %></li><%end %></li>

@@ -1,0 +1,7 @@
+<!--<% provide(:title, "Edit referee") %>-->
+<h2>Update your profile</h2>
+
+<%= form_for @referee do |f| %>
+	<%= render 'referee_form', f: f %>
+	<%=f.submit "Update Referee", class: "btn btn-primary btn-lg"%>
+<% end %>

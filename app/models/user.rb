@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  belongs_to :referees
-  belongs_to :players
-  belongs_to :contests
+  has_many :referees
+  has_many :players
+  has_many :contests
   
   validates :username, presence: true, uniqueness: true, :length => {:maximum=>15}
   REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
