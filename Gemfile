@@ -18,6 +18,8 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+ gem 'validates_timeliness', github: 'softace/validates_timeliness', branch: 'support_for_rails4'
+
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use SCSS for stylesheets
