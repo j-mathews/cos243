@@ -9,14 +9,21 @@ class Referee < ActiveRecord::Base
   REGEX=/(http(?:s)?\:\/\/[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]+)*\.[a-zA-Z]{2,6}(?:\/?|(?:\/[\w\-]+)*)(?:\/?|\/\w+\.[a-zA-Z]{2,4}(?:\?[\w]+\=[\w\-]+)?)?(?:\&[\w]+\=[\w\-]+)*)/ 
   validates :rules_url, presence: true, :format => { :with => REGEX }
   validates :file_location, presence: true
+  validate :file_location_check
+  
+    
+  def file_location_check
+    if self.file_location && !File.exists?(self.file_location)
+      errors.add( :file_location, " is invalid!")
+    end
+  end
   
   def upload=(uploaded_file)
     if(uploaded_file.nil?)
-      #problem no file
+      # problem no file
     else
       time_no_spaces = Time.now.to_s.gsub(/\s/, '_')
       file_location = Rails.root.join('code', "referees",Rails.env, time_no_spaces).to_s + SecureRandom.hex
-      uploaded_file.read
       IO::copy_stream(uploaded_file,file_location)
     end
     self.file_location = file_location

@@ -6,9 +6,9 @@ class Player < ActiveRecord::Base
   
 	validates :user,  presence: true
   validates :contest, presence: true
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :description, presence: true
-  validates :file_location, presence: true 
+  validates :file_location, presence: true, :format => { :with => /.+players.+/ }
   
   
   def upload=(uploaded_file)
@@ -20,6 +20,10 @@ class Player < ActiveRecord::Base
       IO::copy_stream(uploaded_file,file_location)
     end
     self.file_location = file_location
+    if File.exists?(file_location)
+      flash[:danger]="That was an invalid file location!"
+      redirect_to root_path
+    end
   end
     
     

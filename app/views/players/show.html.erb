@@ -1,0 +1,10 @@
+<% provide(:title, @player.name) %>
+<h1>Contest Information</h1>
+
+<p><%= @player.name %> | <%= link_to "edit", edit_player_path(@player) %></p>
+<ul>
+  <li>Created: less than a minute</li>
+  <li>Description: <%= @player.description %></li>
+  <li>Playable: <%=@player.playable %></li>
+  <li>Downloadable: <%= @player.downloadable %></li>
+</ul>

@@ -13,9 +13,7 @@ class Contest < ActiveRecord::Base
   validates :description, presence: true
   
   
-  validates_date :start , :on_or_after => lambda { :deadline } 
-  #validates_date :start, :before => lambda { Time.now } 
-  
-
+  validates_datetime :start , :on_or_after => lambda { :deadline } 
+  validates_datetime :deadline, :on_or_after => lambda { Time.now.change(:usec =>0) }
 
 end
