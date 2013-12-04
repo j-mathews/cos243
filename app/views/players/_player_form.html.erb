@@ -10,19 +10,19 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :name %>
+    <%= f.label :name, "Name" %>
     <%= f.text_field :name, class: 'form-control'%>
   </div>
 
   <div class="form-group">
-    <%= f.label :description %>
+    <%= f.label :description, 'Description' %>
     <%= f.text_field :description, class: 'form-control'%>
   </div>
 
   <div class="form-group">
-    <%= f.label :downloadable %>
+    <%= f.label :downloadable, "download" %>
     <%= f.check_box :downloadable, class: 'form-control'%>
-    <%= f.label :playable %>
+    <%= f.label :playable, "compete" %>
     <%= f.check_box :playable, class: 'form-control'%>
   </div>
 
@@ -32,6 +32,6 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :contest_id, "Player" %>
+    <%= f.label :contest_id, "Contest" %>
     <%= f.collection_select(:contest_id, Contest.all, :id, :name, class: 'form-control') %>
   </div>

@@ -1,17 +1,19 @@
 class PlayersController < ApplicationController
   
   before_action :ensure_user_logged_in, only: [:new, :create, :edit, :update]
-  before_action :ensure_contest_creator, only: [:new, :create, :edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update]
   
   def new
-    @player = current_user.players.build
+    contest = Contest.find(params[:contest_id])
+    @player = contest.players.build
   end 
   
   def create
-    @player = current_user.players.build(acceptable_params)
+    contest = Contest.find(params[:contest_id])
+    @player = contest.players.build(acceptable_params)
     if @player.save then
       flash[:success] = "Player #{@player.name} created!"
-      redirect_to @player     
+      redirect_to @player  
     else
       render 'new'
     end
@@ -41,12 +43,12 @@ class PlayersController < ApplicationController
   
   def destroy
     @player = Player.find(params[:id])
-    if !current_user?(@player)
-      @player
-      flash[:success] = "Player destroyed."
-      redirect_to referees_path
+    if current_user?(@player.user)
+      @player.destroy
+      flash[:success] = "Player deleted."
+      redirect_to contest_players_path(@player.contest)
     else
-      flash[:danger] = "Can't delete player."
+      flash[:danger] = "Can't delete player"
       redirect_to root_path
     end 
   end
@@ -60,7 +62,8 @@ class PlayersController < ApplicationController
       redirect_to login_path, flash: { :warning => "Can't do that, log in!" } unless logged_in? 
     end
     
-    def ensure_contest_creator
-      redirect_to root_path, flash: { :danger => "You are not a contest creator" } unless current_user.contest_creator?
-    end 
+    def ensure_correct_user
+      @player = Player.find(params[:id])
+      redirect_to root_path, flash: { :danger => "Must be Logged in as correct user!" } unless current_user?(@player.user)
+    end
 end
